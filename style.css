@@ -284,35 +284,48 @@ body {
 
 /* Contact */
 .contact-container {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
+    display: flex;
+    justify-content: center;
     gap: 4rem;
+}
+
+.contact-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    width: 100%;
 }
 
 .info-item {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
+    text-align: center;
+    background: var(--bg-light);
+    padding: 2rem;
+    border-radius: 15px;
+    transition: var(--transition);
+}
+
+.info-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
 }
 
 .info-item i {
-    font-size: 1.5rem;
+    font-size: 2rem;
     color: var(--primary);
+    margin-bottom: 1rem;
 }
 
-.contact-form input, .contact-form textarea {
-    width: 100%;
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    outline: none;
-    font-family: inherit;
+.info-item p a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 500;
 }
 
-.contact-form input:focus, .contact-form textarea:focus {
-    border-color: var(--primary);
+.info-item p a:hover {
+    color: var(--primary);
 }
 
 /* Footer */
