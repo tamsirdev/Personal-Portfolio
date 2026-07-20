@@ -538,6 +538,112 @@ body {
     font-size: 0.9rem;
 }
 
+/* Projects */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.project-card {
+    background: var(--bg-white);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(0,0,0,0.04);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.project-card:hover::before {
+    transform: scaleX(1);
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.project-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.project-header i {
+    font-size: 2rem;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.project-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    background: rgba(79, 70, 229, 0.08);
+    color: var(--primary);
+    border-radius: 20px;
+}
+
+.project-card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.35rem;
+}
+
+.project-org {
+    color: var(--primary);
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+}
+
+.project-card > p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.project-tech span {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.65rem;
+    background: var(--bg-light);
+    color: var(--text-muted);
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+@media (max-width: 640px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* Education */
 .education-grid {
     display: grid;
