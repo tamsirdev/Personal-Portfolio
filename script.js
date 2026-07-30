@@ -1,21 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ─── Scroll Progress Bar ─────────────────────────────────────────
+    // ─── Scroll Effects (Progress Bar + Navbar) ──────────────────────
     const progressBar = document.getElementById('scroll-progress');
-    if (progressBar) {
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-            progressBar.style.width = progress + '%';
-        });
-    }
-
-    // ─── Navbar Scroll Effect ────────────────────────────────────────
     const navbar = document.querySelector('.navbar');
+
     window.addEventListener('scroll', () => {
-        const shouldScroll = window.scrollY > 50;
-        navbar.classList.toggle('scrolled', shouldScroll);
+        const scrollY = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
+        if (progressBar) progressBar.style.width = progress + '%';
+        if (navbar) navbar.classList.toggle('scrolled', scrollY > 50);
     });
 
     // ─── Mobile Menu Toggle ──────────────────────────────────────────
@@ -122,9 +116,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === '#' + current) {
-                link.classList.add('active');
+            const isActive = link.getAttribute('href') === '#' + current;
+            link.classList.toggle('active', isActive);
+            if (isActive) {
+                link.setAttribute('aria-current', 'page');
+            } else {
+                link.removeAttribute('aria-current');
             }
         });
     }
@@ -148,10 +145,31 @@ document.addEventListener('DOMContentLoaded', () => {
     // ─── Form Submission ─────────────────────────────────────────────
     const form = document.querySelector('.contact-form');
     if (form) {
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            alert('Thank you for your message! I will get back to you soon.');
-            form.reset();
+            const btn = form.querySelector('.btn');
+            const originalText = btn.textContent;
+            btn.textContent = 'Sending...';
+            btn.disabled = true;
+
+            try {
+                const res = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (res.ok) {
+                    alert('Thank you! Your message has been sent.');
+                    form.reset();
+                } else {
+                    alert('Oops! Something went wrong. Please try again.');
+                }
+            } catch {
+                alert('Network error. Please check your connection and try again.');
+            }
+
+            btn.textContent = originalText;
+            btn.disabled = false;
         });
     }
 });

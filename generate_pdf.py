@@ -10,7 +10,7 @@ def create_cv():
     # Custom Styles
     name_style = ParagraphStyle('NameStyle', parent=styles['Heading1'], fontSize=24, spaceAfter=10, textColor=colors.HexColor("#4f46e5"))
     section_style = ParagraphStyle('SectionStyle', parent=styles['Heading2'], fontSize=16, spaceBefore=15, spaceAfter=10, textColor=colors.HexColor("#1e293b"), borderPadding=5)
-    job_title_style = ParagraphStyle('JobTitle', parent=styles['Normal'], fontSize=12, fontWeight='bold', fontName='Helvetica-Bold')
+    job_title_style = ParagraphStyle('JobTitle', parent=styles['Normal'], fontSize=12, fontName='Helvetica-Bold')
     meta_style = ParagraphStyle('Meta', parent=styles['Normal'], fontSize=10, textColor=colors.grey, italic=True)
     body_style = styles['Normal']
     
