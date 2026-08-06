@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
             items: [
                 { title: 'HTML Fundamentals Course Certificate', org: 'Sololearn', date: 'Jul 07, 2020' },
                 { title: 'CSS Course Certificate', org: 'Sololearn', date: 'Jun 19, 2021' },
-                { title: 'Taxpayer Identification Number (TIN) Certificate', org: 'Gambia Revenue Authority', date: 'Jul 16, 2021' },
+                //{ title: 'Taxpayer Identification Number (TIN) Certificate', org: 'Gambia Revenue Authority', date: 'Jul 16, 2021' },
                 { title: 'SQL Course Certificates', org: 'Sololearn', date: 'Oct 05 & Oct 06, 2021' },
                 { title: 'Certificate of Achievement: 12-Month Training Programme on the Core Values of Leadership', org: 'TAF Leadership Academy, TAF Africa Foundation Centre, Brufut, The Gambia', date: 'Dec 28, 2022' },
                 { title: 'SQL Intermediate Course Certificate', org: 'Sololearn', date: 'Apr 05, 2023' },
