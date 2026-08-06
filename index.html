@@ -69,13 +69,15 @@
                     <p>Currently serving as an ICT Officer with the Gambia Government, I've managed complex technical projects and national campaigns, ensuring high-quality service delivery and system integrity. I love to learn, share and collaborate in Tech-Driven Solutions!</p>
                 </div>
                 <div class="about-stats">
-                    <div class="stat-item">
+                    <div class="stat-item" role="button" tabindex="0" data-stat="experience" aria-expanded="false">
                         <span class="stat-num">5+</span>
                         <span class="stat-label">Years Exp.</span>
+                        <span class="stat-hint">View</span>
                     </div>
-                    <div class="stat-item">
+                    <div class="stat-item" role="button" tabindex="0" data-stat="certifications" aria-expanded="false">
                         <span class="stat-num">10+</span>
                         <span class="stat-label">Certifications</span>
+                        <span class="stat-hint">View</span>
                     </div>
                 </div>
             </div>
@@ -318,6 +320,15 @@
     </footer>
 
     <button id="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+    <div class="stat-modal" id="stat-modal" aria-hidden="true">
+        <div class="stat-modal-overlay" data-close-modal></div>
+        <div class="stat-modal-content" role="dialog" aria-modal="true" aria-labelledby="stat-modal-title">
+            <button class="stat-modal-close" data-close-modal aria-label="Close">&times;</button>
+            <h3 class="stat-modal-title" id="stat-modal-title"></h3>
+            <ul class="stat-modal-list" id="stat-modal-list"></ul>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

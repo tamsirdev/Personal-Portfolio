@@ -142,6 +142,90 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ─── Stat Items (Clickable Experience / Certifications) ─────────
+    const statData = {
+        experience: {
+            title: 'Work Experience',
+            items: [
+                { title: 'ICT Officer', org: 'Ministry of Information — Dept. of Information Services', date: 'Jan 2026 — Present' },
+                { title: 'ICT Officer (EIR Tracker Core Team)', org: 'Ministry of Health — Directorate of Planning & Information', date: 'June 2024 — Jan 2026' },
+                { title: 'Junior Network Engineer (Contract)', org: 'LAN Installation Project', date: 'Nov 2023 — June 2024' },
+                { title: 'ICT Technician', org: 'Ministry of Health — Mass Birth Certificate Campaign', date: 'Aug 2022 — Feb 2023' },
+                { title: 'Data Entry Clerk', org: 'Ministry of Health', date: 'Mar 2021 — Nov 2021' }
+            ]
+        },
+        certifications: {
+            title: 'Professional Development & Technical Certifications',
+            items: [
+                { title: 'HTML Fundamentals Course Certificate', org: 'Sololearn', date: 'Jul 07, 2020' },
+                { title: 'CSS Course Certificate', org: 'Sololearn', date: 'Jun 19, 2021' },
+                { title: 'Taxpayer Identification Number (TIN) Certificate', org: 'Gambia Revenue Authority', date: 'Jul 16, 2021' },
+                { title: 'SQL Course Certificates', org: 'Sololearn', date: 'Oct 05 & Oct 06, 2021' },
+                { title: 'Certificate of Achievement: 12-Month Training Programme on the Core Values of Leadership', org: 'TAF Leadership Academy, TAF Africa Foundation Centre, Brufut, The Gambia', date: 'Dec 28, 2022' },
+                { title: 'SQL Intermediate Course Certificate', org: 'Sololearn', date: 'Apr 05, 2023' },
+                { title: 'Tech for Everyone Course Certificate', org: 'Sololearn', date: 'Apr 06, 2023' },
+                { title: 'Introduction to Data Analysis using Microsoft Excel', org: 'Coursera Project Network (Freedom Learning Group)', date: 'Jul 28, 2023' },
+                { title: 'PHP Course Certificate', org: 'Sololearn', date: 'Jul 30, 2023' },
+                { title: 'Technical Support Fundamentals Certificate', org: 'Google (offered through Coursera)', date: 'Aug 01, 2023' },
+                { title: 'Create a Website Using WordPress', org: 'Coursera Project Network', date: 'Aug 04, 2023' },
+                { title: 'Introduction to Microsoft Excel', org: 'Coursera Project Network (Freedom Learning Group)', date: 'Aug 10, 2023' },
+                { title: 'Using Basic Formulas and Functions in Microsoft Excel', org: 'Coursera Project Network (Freedom Learning Group)', date: 'Aug 10, 2023' },
+                { title: 'Computer Hardware Certificate', org: 'TCPDF Powered Platform', date: 'Oct 05, 2023' },
+                { title: 'Introduction to DHIS2 (GEN-D001-en)', org: 'DHIS2 Online Academy, HISP Centre', date: 'Aug 08, 2024' },
+                { title: 'Aggregate Data Capture and Validation Fundamentals (GEN-D002-en)', org: 'DHIS2 Online Academy, HISP Centre', date: 'Aug 30, 2024' },
+                { title: 'Aggregate Data Analysis Fundamentals (GEN-D003-en)', org: 'DHIS2 Online Academy, HISP Centre', date: 'Dec 18, 2024' },
+                { title: 'Aggregate Customization Fundamentals', org: 'DHIS2 Online Academy, HISP Centre, University of Oslo', date: 'Aug 12, 2025' },
+                { title: 'Bachelor of Science in Information Technology', org: 'International Open University (IOU), The Gambia', date: 'Feb 19, 2024' },
+                { title: 'Certificate of Proficiency in English Language', org: 'International Open University (IOU), Registrar\'s Office, The Gambia', date: 'Mar 05, 2025' }
+            ]
+        }
+    };
+
+    const statModal = document.getElementById('stat-modal');
+    const statModalTitle = document.getElementById('stat-modal-title');
+    const statModalList = document.getElementById('stat-modal-list');
+
+    const openStatModal = (key) => {
+        const data = statData[key];
+        if (!data) return;
+        statModalTitle.textContent = data.title;
+        statModalList.innerHTML = data.items.map(item =>
+            `<li><h4>${item.title}</h4><p>${item.org} · <span class="stat-date">${item.date}</span></p></li>`
+        ).join('');
+        statModal.classList.add('open');
+        statModal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        document.querySelectorAll('[data-stat]').forEach(el => {
+            if (el.dataset.stat === key) el.setAttribute('aria-expanded', 'true');
+        });
+    };
+
+    const closeStatModal = () => {
+        statModal.classList.remove('open');
+        statModal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        document.querySelectorAll('[data-stat]').forEach(el => el.setAttribute('aria-expanded', 'false'));
+    };
+
+    document.querySelectorAll('[data-stat]').forEach(el => {
+        el.addEventListener('click', () => openStatModal(el.dataset.stat));
+        el.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openStatModal(el.dataset.stat);
+            }
+        });
+    });
+
+    if (statModal) {
+        statModal.querySelectorAll('[data-close-modal]').forEach(el => {
+            el.addEventListener('click', closeStatModal);
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && statModal.classList.contains('open')) closeStatModal();
+        });
+    }
+
     // ─── Form Submission ─────────────────────────────────────────────
     const form = document.querySelector('.contact-form');
     if (form) {
